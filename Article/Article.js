@@ -147,6 +147,17 @@ function createArticle(articleData) {
 }
 
 
+// Add a custom article
+
+data.push({
+    title: 'Lorem Ipsum',
+    date: 'May 6th, 2020',
+    firstParagraph: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni placeat illum odio totam, vitae sunt esse aut porro ipsum repellat perferendis. Voluptas, quis minus. Atque ratione id at quam nobis!',
+    secondParagraph: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni placeat illum odio totam, vitae sunt esse aut porro ipsum repellat perferendis. Voluptas, quis minus. Atque ratione id at quam nobis!',
+    thirdParagraph: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni placeat illum odio totam, vitae sunt esse aut porro ipsum repellat perferendis. Voluptas, quis minus. Atque ratione id at quam nobis!'
+});
+
+
 // Display all articles
 
 let articles = document.querySelector('.articles');

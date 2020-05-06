@@ -100,15 +100,80 @@ const data = [
   </div>
 
   Hint: You will need to use createElement more than once here!
-
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
-
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
-
-  Step 3: return the entire component.
-
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
-
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
-
 */
+
+function createArticle(articleData) {
+
+    // Create the main div
+
+    let article = document.createElement('div');
+    article.classList.add('article');
+    
+
+    // Heading
+
+    let heading = document.createElement('h2');
+    heading.textContent = articleData.title;
+    article.appendChild(heading);
+
+
+    // Date
+
+    let date = document.createElement('p');
+    date.classList.add('date');
+    date.textContent = articleData.date;
+    article.appendChild(date);
+
+
+    // Paragraphs
+
+    for (let key of Object.keys(articleData)) {
+        if (key.endsWith('Paragraph')) {
+            let p = document.createElement('p');
+            p.textContent = articleData[key];
+            article.appendChild(p);
+        }
+    }
+
+    // Expand button
+
+    let expandButton = document.createElement('span');
+    expandButton.textContent = "Read more";
+    expandButton.classList.add('expandButton');
+    article.appendChild(expandButton);
+
+
+    return article;
+}
+
+
+// Add a custom article
+
+data.push({
+    title: 'Lorem Ipsum',
+    date: 'May 6th, 2020',
+    firstParagraph: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni placeat illum odio totam, vitae sunt esse aut porro ipsum repellat perferendis. Voluptas, quis minus. Atque ratione id at quam nobis!',
+    secondParagraph: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni placeat illum odio totam, vitae sunt esse aut porro ipsum repellat perferendis. Voluptas, quis minus. Atque ratione id at quam nobis!',
+    thirdParagraph: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni placeat illum odio totam, vitae sunt esse aut porro ipsum repellat perferendis. Voluptas, quis minus. Atque ratione id at quam nobis!'
+});
+
+
+// Display all articles
+
+let articles = document.querySelector('.articles');
+
+for (let item of data) {
+    let article = createArticle(item);
+    articles.appendChild(article);
+}
+
+
+// Expand buttons for each article
+
+let articleButtons = document.querySelectorAll('.expandButton');
+
+for (let button of articleButtons) {
+    button.addEventListener('click', () => {
+        button.parentElement.classList.toggle('article-open');
+    });
+}

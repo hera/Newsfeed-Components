@@ -100,8 +100,6 @@ const data = [
   </div>
 
   Hint: You will need to use createElement more than once here!
-
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 */
 
 function createArticle(articleData) {
@@ -140,6 +138,7 @@ function createArticle(articleData) {
     // Expand button
 
     let expandButton = document.createElement('span');
+    expandButton.textContent = "Read more";
     expandButton.classList.add('expandButton');
     article.appendChild(expandButton);
 
@@ -148,15 +147,22 @@ function createArticle(articleData) {
 }
 
 
+// Display all articles
 
-/*
+let articles = document.querySelector('.articles');
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+for (let item of data) {
+    let article = createArticle(item);
+    articles.appendChild(article);
+}
 
-  Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+// Expand buttons for each article
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+let articleButtons = document.querySelectorAll('.expandButton');
 
-*/
+for (let button of articleButtons) {
+    button.addEventListener('click', () => {
+        button.parentElement.classList.toggle('article-open');
+    });
+}
